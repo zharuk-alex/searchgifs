@@ -78,6 +78,7 @@ function getQueryItems(e, query, offset) {
 				initMasonryContainer($grid);
 				$grid.masonryImagesReveal( $($items) );
 				(!$('#loadmore').length) ? addLoadMore(count):updateLoadMore(count);
+				$('.input-search').blur();
 			}
 		},
 		complete: function () {
@@ -140,10 +141,8 @@ $("document").ready(function() {
 		$('#search-content-wrapper .item-holder').html('');
 		getQueryItems(e, value, 0);
   }).find('input:first').focus().on('change paste keyup', function (e) {
-		if(e.keyCode === 8){
 			removeSearchResults();
 			removeLoadMoreButton();
-		}
 	})
 
 $('#search-content-wrapper').on('mouseenter','.grid-item',function (e) {
