@@ -7,3 +7,4 @@ git clone https://github.com/zzharuk/searchgifs.git
 ```
 yarn
 ```
+Then run `gulp` for create **dist** folder
