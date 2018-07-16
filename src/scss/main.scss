@@ -70,6 +70,9 @@ body {
 .grid-sizer,
 .grid-item {
   width: 33.333%;
+  @include media-breakpoint-down(sm){
+    width: 50%;
+  };
 }
 
 .grid-item {

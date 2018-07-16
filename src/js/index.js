@@ -34,18 +34,15 @@ function addItem(itemdata) {
 		"data-still":itemdata.images['480w_still'].url,
 		"data-gif":itemdata.images['original'].url
 	}).append(
-		$("<img>").attr('src', itemdata.images['480w_still'].url),
+		$("<img>",{
+			src: itemdata.images['480w_still'].url,
+		}),
 		$("<a>",{
 			class: "grid-item-link",
 			href: itemdata.url,
 			target: '_blank',
 			alt: itemdata.url
-		}),
-		$("<div>",{}).append(
-			$("<span>").append(
-
-			)
-		)
+		})
 	)
 }
 
@@ -75,7 +72,6 @@ function getQueryItems(e, query, offset) {
 				})
 				var $grid = $('.grid');
 				$items = $items.map(function(el){return el.get()[0].outerHTML;}).join('');
-				initMasonryContainer($grid);
 				$grid.masonryImagesReveal( $($items) );
 				(!$('#loadmore').length) ? addLoadMore(count):updateLoadMore(count);
 				$('.input-search').blur();
@@ -135,6 +131,10 @@ function loadMoreButtonEvent(){
 }
 
 $("document").ready(function() {
+
+	var $grid = $('.grid');
+	initMasonryContainer($grid);
+
   $("#search-submit-form-1").on('submit', function (e) {
   	e.preventDefault();
 		var value = $(this).find('input').val();
@@ -145,7 +145,7 @@ $("document").ready(function() {
 			removeLoadMoreButton();
 	})
 
-$('#search-content-wrapper').on('mouseenter','.grid-item',function (e) {
+	$grid.on('mouseenter','.grid-item',function (e) {
 		var $img = $(this).find('img');
 		var gif_img = $(this).data('gif');
 		var $link = $(this).find('.grid-item-link');
